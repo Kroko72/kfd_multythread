@@ -61,6 +61,7 @@ class Cashier(val id: Int, val bank: Bank): Thread() {
         }
     }
 
+    // Перевод валюты
     private fun exchangeCurrency(clientId: Int, toCurrency: String) {
         bank.clients[clientId]?.let {
             synchronized(it.lock){
@@ -68,7 +69,8 @@ class Cashier(val id: Int, val bank: Bank): Thread() {
             }
         }
     }
-
+    
+    // Перевод кому-то
     private fun transferTransaction(clientId: Int, receiverId: Int, amount: Double) {
         bank.clients[clientId]?.let {
             synchronized(it.lock) {
